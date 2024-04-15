@@ -21,6 +21,8 @@ Now if go to terminal and run "npm start" then the project will run. ("npm run .
 
 ### Setup Express Application
 
+To install express, run the following command.
+
 ```
 npm i express
 ```
@@ -37,4 +39,10 @@ In "package.json" file, write down the Node version at the end like the below:
 "engines": {
     "node": "20.11.0"
   }
+```
+
+Now go to "index.js" file and setup express application.
+
+```
+code yet not ready
 ```
