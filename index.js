@@ -1,9 +1,23 @@
 const express = require("express");
+const fs = require("fs");
 
 const app = express();
 
 // Handle route
 app.get("/", (req, res) => {
+  res.send(`<h1>I am Home Route</h1>`);
+});
+
+app.get("/about", (req, res) => {
+  res.send(`<h1>I am About Route</h1>`);
+});
+
+app.get("/help", (req, res) => {
+  res.send(`<h1>I am Help Route</h1>`);
+});
+
+// send html as a string
+app.get("/html", (req, res) => {
   res.send(`
   <!DOCTYPE html>
   <html lang="en">
@@ -43,6 +57,19 @@ app.get("/", (req, res) => {
     </body>
   </html>  
   `);
+});
+
+// send html file
+app.get("/htmlfile", (req, res) => {
+  fs.readFile("./pages/index.html", (err, data) => {
+    if (err) {
+      console.log("Error ", err);
+      res.send(`<h1>Something Went Wrong</h1>`);
+    } else {
+      res.write(data);
+      res.end();
+    }
+  });
 });
 
 app.listen(4000, () => {

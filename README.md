@@ -1,5 +1,9 @@
 # Express 101
 
+Table of content
+Create A Fresh Project
+Explore Express Methods
+
 ## Create A Fresh Project
 
 Go to your terminal and run the following command.
@@ -77,13 +81,15 @@ app.listen(4000, () => {
 });
 ```
 
-## Send HTML to Browser
+### Send HTML to Browser
 
 If you change any code, restart the server must (as we not yet use "nodemon")
 
 1. Handle route ( app.get(route, controller) )
 
 ```
+// index.js
+
 app.get("/", (req, res) => {
   res.send(`
   <!DOCTYPE html>
@@ -127,7 +133,7 @@ app.get("/", (req, res) => {
 });
 ```
 
-## Understand The Pipeline
+### Understand The Pipeline
 
 ![Pipeline_Image](img/image_one.png)
 
@@ -143,7 +149,7 @@ function handler(req, res, next) {
 }
 ```
 
-## Install Nodemon
+### Install Nodemon
 
 ```
 npm i -D nodemon
@@ -163,3 +169,69 @@ Add a new script inside package.json file ( "dev" is added ).
 ```
 
 Now we must write in terminal "npm run dev" not "npm dev". Now no need to restart the server if you change any code.
+
+### Handle Multiple Routes
+
+```
+// index.js
+
+app.get('/', (req,res)=>{
+  res.send(`<h1>I am Home Route</h1>`)
+})
+
+app.get('/about', (req,res)=>{
+  res.send(`<h1>I am About Route</h1>`)
+})
+
+app.get('/help', (req,res)=>{
+  res.send(`<h1>I am Help Route</h1>`)
+})
+```
+
+### Send HTML File
+
+Create a file named 'pages' in the root directory and create a folder named 'index.html' inside it.
+
+```
+// pages/index.html
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Coming from File</title>
+  </head>
+  <body>
+    <h1>HTML Coming from File</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci
+      nesciunt cumque sint quam quae repellat perferendis, aliquam accusamus
+      voluptates exercitationem aperiam molestiae a, itaque natus quaerat
+      mollitia tenetur repudiandae!
+    </p>
+  </body>
+</html>
+```
+
+To send this HTML file, go to 'index.js' file and import 'fs' module.
+
+```
+const fs = require("fs");
+
+app.get("/htmlfile", (req, res) => {
+  fs.readFile("./pages/index.html", (err, data) => {
+    if (err) {
+      console.log("Error ", err);
+      res.send(`<h1>Something Went Wrong</h1>`);
+    } else {
+      res.write(data);
+      res.end();
+    }
+  });
+});
+```
+
+By doing this, our first module is completed successfully.
+
+## Explore Express Methods
