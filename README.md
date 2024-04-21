@@ -43,6 +43,17 @@ In "package.json" file, write down the Node version at the end like the below:
 
 Now go to "index.js" file and setup express application.
 
+1. Import express (old style and this is called common js module system).
+
 ```
-code yet not ready
+const express = require("express");
+// import express from "express"; (new style and this is called ecmascript module system)
 ```
+
+2. Create the desire application using express function call.
+
+```
+const app = express();
+```
+
+3. Now we need to listen this application.
