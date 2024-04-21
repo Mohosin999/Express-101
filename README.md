@@ -17,7 +17,7 @@ After that, create an "index.js" file in root directory. Go to the "package.json
   },
 ```
 
-Now if go to terminal and run "npm start" then the project will run. ("npm run ..." will be for "dev" and others command.). Project's basic structure is ready. Now setup express application.
+Now if go to terminal and run "npm start" then the project will run ("npm start" and "npm test" but "npm run ..." will be for "dev" and others command). Project's basic structure is ready. Now setup express application.
 
 ### Setup Express Application
 
@@ -33,7 +33,7 @@ We will write down the Node version we are using in the "package.json" file. How
 node -v
 ```
 
-In "package.json" file, write down the Node version at the end like the below:
+In "package.json" file, write down the Node version like the below:
 
 ```
 "engines": {
@@ -77,11 +77,11 @@ app.listen(4000, () => {
 });
 ```
 
-### Send HTML to Browser
+## Send HTML to Browser
 
-Remember this, when any change in the code, restart the server must.
+If you change any code, restart the server must (as we not yet use "nodemon")
 
-1. Handle route
+1. Handle route ( app.get(route, controller) )
 
 ```
 app.get("/", (req, res) => {
@@ -181,3 +181,40 @@ app.listen(4000, () => {
   console.log("Server is listening on PORT 4000");
 });
 ```
+
+## Understand The Pipeline
+
+set here image
+
+Every route needs a handler function. Handler function's signature is -
+
+```
+// It could be an arrow function.
+
+function handler(req, res, next) {
+  // read request object
+  // process request
+  // response back the result
+}
+```
+
+## Install Nodemon
+
+```
+npm i -D nodemon
+```
+
+--save-dev ( sort form is '-D' )
+
+This is not a dependency of the project, it is my or developer dependency. That's why we use "-D" for developer dependency. It'll save as dev dependency. jokhon production build kora hobe, tokhon dev dependency gulo ke bad dewa hobe file size small korar jonne. sekhane dorkar hobe only application dependecy
+
+Add a new script inside package.json file ( "dev" is added ).
+
+```
+"scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+```
+
+Now we must write in terminal "npm run dev" not "npm dev". Now no need to restart the server if you change any code.
