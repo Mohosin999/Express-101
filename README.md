@@ -17,7 +17,7 @@ After that, create an "index.js" file in root directory. Go to the "package.json
   },
 ```
 
-Now if go to terminal and run "npm start" then the project will run ("npm start" and "npm test" but "npm run ..." will be for "dev" and others command). Project's basic structure is ready. Now setup express application.
+Now if go to terminal and run "npm start" then the project will run. Note that "run" prefixer is not required for "npm start" and "npm test" but it's required for "dev" and others command. Project's basic structure is ready. Now setup express application.
 
 ### Setup Express Application
 
@@ -127,64 +127,9 @@ app.get("/", (req, res) => {
 });
 ```
 
-Full code -
-
-```
-const express = require("express");
-
-const app = express();
-
-// Handle route
-app.get("/", (req, res) => {
-  res.send(`
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>NodeJS 101 Course</title>
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        body {
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: 16px;
-        }
-        .container {
-          width: 50%;
-          margin: 2rem auto;
-          padding: 2rem;
-          background: #dddeee;
-        }
-        .text{
-            margin-top: 0.5rem
-        }
-      </style>
-    </head>
-    <body class="container">
-      <h1>Hello NodeJS, You are Really Awesome!</h1>
-      <p class="text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, mollitia!
-        Numquam, ipsa, velit voluptatibus reiciendis totam excepturi molestiae
-        nesciunt ullam quae soluta modi quo, pariatur aperiam perspiciatis quasi
-        dolore nam.
-      </p>
-    </body>
-  </html>
-  `);
-});
-
-app.listen(4000, () => {
-  console.log("Server is listening on PORT 4000");
-});
-```
-
 ## Understand The Pipeline
 
-set here image
+![Pipeline_Image](img/image_one.png)
 
 Every route needs a handler function. Handler function's signature is -
 
@@ -206,7 +151,7 @@ npm i -D nodemon
 
 --save-dev ( sort form is '-D' )
 
-This is not a dependency of the project, it is my or developer dependency. That's why we use "-D" for developer dependency. It'll save as dev dependency. jokhon production build kora hobe, tokhon dev dependency gulo ke bad dewa hobe file size small korar jonne. sekhane dorkar hobe only application dependecy
+This is not a dependency of the project, it is developer dependency. That's why we use "-D" for developer dependency. It'll save as dev dependency. When the production build is done, dev dependencies will be removed to reduce the file size. There will only be application dependencies required.
 
 Add a new script inside package.json file ( "dev" is added ).
 
