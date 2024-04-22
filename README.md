@@ -320,3 +320,9 @@ Read [express request object](https://expressjs.com/en/5x/api.html#res) document
 ![Express_Request_Object](./img/response_object.png)
 
 ## Middleware Pipeline
+
+There is two types of middleware are exist:
+
+loading note...
+
+![Middleware_Pipeline](./img/middleware.png)
