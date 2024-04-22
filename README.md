@@ -1,8 +1,8 @@
 # Express 101
 
-Table of content
-Create A Fresh Project
-Explore Express Methods
+## Table of Contents
+
+- [Create A Fresh Project](#create-a-fresh-project) -[Explore Express Methods](#explore-express-methods)
 
 ## Create A Fresh Project
 
