@@ -135,7 +135,7 @@ app.get("/", (req, res) => {
 
 ### Understand The Pipeline
 
-![Pipeline_Image](img/image_one.png)
+![Pipeline_Image](./img/image_one.png)
 
 Every route needs a handler function. Handler function's signature is -
 
@@ -235,3 +235,5 @@ app.get("/htmlfile", (req, res) => {
 By doing this, our first module is completed successfully.
 
 ## Explore Express Methods
+
+![Express_Methods](./img/express_methods.png)
