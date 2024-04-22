@@ -5,6 +5,7 @@
 - [Create A Fresh Project](#create-a-fresh-project)
 - [Explore Express Methods](#explore-express-methods)
 - [Explore Application Object](#explore-application-object)
+- []
 
 ## Create A Fresh Project
 
@@ -238,10 +239,78 @@ By doing this, our first module is completed successfully.
 
 ## Explore Express Methods
 
-Read [express methods](https://expressjs.com/en/4x/api.html#express) documentation to gain details knowledge.
+### Important Express Methods:
+
+- express.json()
+- express.Router()
+- express.static()
+- express.urlencoded()
+
+Read [express methods](https://expressjs.com/en/5x/api.html#express) documentation to gain details knowledge.
 ![Express_Methods](./img/express_methods.png)
 
 ## Explore Application Object
 
-Read [express application](https://expressjs.com/en/4x/api.html#app) documentation to gain details knowledge.
+### Important Application Object:
+
+- app.get()
+- app.post()
+- app.put()
+- app.delete()
+- app.listen()
+- app.use()
+- app.route()
+
+Read [express application](https://expressjs.com/en/5x/api.html#app) documentation to gain details knowledge.
 ![Express_Application](./img/express_application.png)
+
+## Understand Request
+
+### Important Request Object:
+
+Properties
+
+- req.body
+- req.cookies (It's needed to work with authentication.)
+- req.params (It's important for dynamic routing.)
+- req.query
+- req.hostname
+- req.ip
+- req.method
+
+Methods
+
+- req.accepts()
+- req.get()
+
+Read [express request object](https://expressjs.com/en/5x/api.html#req) documentation to gain details knowledge.
+![Express_Request_Object](./img/request_object.png)
+
+## Understand Response
+
+### Important Response Object
+
+Methods
+
+- res.append()
+- res.attachment()
+- res.cookie()
+- res.download()
+- res.json()
+- res.jsonp()
+- res.send()
+- res.redirect()
+- res.render()
+- res.get()
+- res.set()
+- res.send()
+- res.sendFile()
+- res.status()
+- res.sendStatus()
+- res.format()
+- res.end()
+
+Read [express request object](https://expressjs.com/en/5x/api.html#res) documentation to gain details knowledge.
+![Express_Request_Object](./img/response_object.png)
+
+## Middleware Pipeline
