@@ -75,10 +75,3 @@ app.get("/htmlfile", (req, res) => {
 app.listen(4000, () => {
   console.log("Server is listening on PORT 4000");
 });
-
-// It could be an arrow function
-function handler(req, res, next) {
-  // read request objet
-  // process request
-  // response back the result
-}
