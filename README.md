@@ -5,7 +5,9 @@
 - [Create A Fresh Project](#create-a-fresh-project)
 - [Explore Express Methods](#explore-express-methods)
 - [Explore Application Object](#explore-application-object)
-- []
+- [Understand Request](#understand-request)
+- [Understand Response](#understand-response)
+- [Middleware Pipeline](#middleware-pipeline)
 
 ## Create A Fresh Project
 
@@ -247,6 +249,7 @@ By doing this, our first module is completed successfully.
 - express.urlencoded()
 
 Read [express methods](https://expressjs.com/en/5x/api.html#express) documentation to gain details knowledge.
+
 ![Express_Methods](./img/express_methods.png)
 
 ## Explore Application Object
@@ -262,6 +265,7 @@ Read [express methods](https://expressjs.com/en/5x/api.html#express) documentati
 - app.route()
 
 Read [express application](https://expressjs.com/en/5x/api.html#app) documentation to gain details knowledge.
+
 ![Express_Application](./img/express_application.png)
 
 ## Understand Request
@@ -284,6 +288,7 @@ Methods
 - req.get()
 
 Read [express request object](https://expressjs.com/en/5x/api.html#req) documentation to gain details knowledge.
+
 ![Express_Request_Object](./img/request_object.png)
 
 ## Understand Response
@@ -311,6 +316,7 @@ Methods
 - res.end()
 
 Read [express request object](https://expressjs.com/en/5x/api.html#res) documentation to gain details knowledge.
+
 ![Express_Request_Object](./img/response_object.png)
 
 ## Middleware Pipeline
