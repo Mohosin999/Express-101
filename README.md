@@ -2,7 +2,9 @@
 
 ## Table of Contents
 
-- [Create A Fresh Project](#create-a-fresh-project) -[Explore Express Methods](#explore-express-methods)
+- [Create A Fresh Project](#create-a-fresh-project)
+- [Explore Express Methods](#explore-express-methods)
+- [Explore Application Object](#explore-application-object)
 
 ## Create A Fresh Project
 
@@ -236,4 +238,10 @@ By doing this, our first module is completed successfully.
 
 ## Explore Express Methods
 
+Read [express methods](https://expressjs.com/en/4x/api.html#express) documentation to gain details knowledge.
 ![Express_Methods](./img/express_methods.png)
+
+## Explore Application Object
+
+Read [express application](https://expressjs.com/en/4x/api.html#app) documentation to gain details knowledge.
+![Express_Application](./img/express_application.png)
