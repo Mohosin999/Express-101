@@ -355,7 +355,7 @@ app.use(express.urlencoded({extended: true}))
 We can get data from json body or request body using "app.use(express.json())".
 We can get data from multi page's form using "app.use(express.urlencoded({extended: true}))".
 
-Let's install some third-party middleware
+Let's install some third-party middleware.
 
 ```
 npm i morgan cors
@@ -372,7 +372,7 @@ app.use(morgan("dev"));
 app.use(cors());
 ```
 
-We use these middleware with the application, that's why they are global middleware. We also can use them as a route specific middleware like the below:
+We are using these middleware within the application, so they are global middleware. We also can use them as route specific middleware like the below:
 
 ```
 app.get("/about", cors(), (req, res) => {
@@ -380,7 +380,7 @@ app.get("/about", cors(), (req, res) => {
 });
 ```
 
-In this case, cors() is worked only for this "/about" route. We can use here multiple middleware via an array like the below:
+In this case, cord() will work only for this "/about" route. We can use here multiple middleware via an array like the below:
 
 ```
 app.get("/about", [cors(), morgan('dev')], (req, res) => {
@@ -390,7 +390,7 @@ app.get("/about", [cors(), morgan('dev')], (req, res) => {
 
 ### Signature of A Middleware
 
-Middleware and Controller's signature are same, but there is difference in responsibilities. Middleware checks everything and pass the request to next middleware or controller. After that controller do everything writing business logic and make actual response and submit it.
+Middleware and Controller have the same signature but their responsibilities differ. Middleware checks everything and passes the request to the next middleware or controller. Then the controller generates and submits the actual response by writing business logic.
 
 ```
 // If everything seems ok, controller will call response methods.
@@ -426,7 +426,7 @@ Let's register it.
 app.use(globalMiddleware);
 ```
 
-We don't need to call this globalMiddleware function like above because we maintain the middleware signature at the time of creation. Remember, if we are not use next() methods, this middleare don't generate any response.
+We don't need to call the globalMiddleware function because we maintained the middleware signature when we created the globalMiddleware. Note that, if we don't call the next() methods, this middleware will not generate any response.
 
 #### Local Middleware
 
