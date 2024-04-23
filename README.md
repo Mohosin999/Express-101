@@ -350,7 +350,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 ```
 
-**app.use** is used to register a middleware.
+**`app.use`** is used to register a middleware.
 
 We can get data from json body or request body using "app.use(express.json())".
 We can get data from multi page's form using "app.use(express.urlencoded({extended: true}))".
@@ -361,8 +361,8 @@ Let's install some third-party middleware.
 npm i morgan cors
 ```
 
-**morgan** is a logger middleware.
-**cors** is a cross origin resource sharing middleware.
+**`morgan`** is a logger middleware.
+**`cors`** is a cross origin resource sharing middleware.
 
 ```
 const cors = require("cors");
@@ -380,7 +380,7 @@ app.get("/about", cors(), (req, res) => {
 });
 ```
 
-In this case, **cors()** will work only for this "/about" route. We can use here multiple middleware via an array like the below:
+In this case, **`cors()`** will work only for this "/about" route. We can use here multiple middleware via an array like the below:
 
 ```
 app.get("/about", [cors(), morgan('dev')], (req, res) => {
