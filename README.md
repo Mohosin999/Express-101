@@ -323,8 +323,69 @@ Read [express request object](https://expressjs.com/en/5x/api.html#res) document
 
 Another important concept like request and response is middleware. With its help we do the most important things. We can use middleware anywhere. If we are only working with request and response, we can do almost all the task.
 
-##### Then why do we use Middleware?
+#### Then why do we use Middleware?
 
-When we say we need a separate handler for each task, it means that we will have some tasks that are very common and the tasks we need to do for each request. In this case if we can use middleware then we can complete these repetitive tasks in a specific place, but if we don't use middleware we have to write duplicate codes continuously.
+When we say we need a separate handler for each task, it means that we will have some tasks that are very common and the tasks we need to do for each request. In this case if we can use middleware then we can complete these repetitive tasks in a specific place, but if we don't use middleware we have to write duplicate codes continuously. That's why we use middleware.
 
 ![Middleware_Pipeline](./img/middleware.png)
+
+### Responsibility of A Middleware
+
+- handle common task
+- log requests
+- filter request
+- modify or reshape request
+- validate request body
+- authenticate or authorize request
+- add additional details to request body
+- response bad requests
+- pass requests to next middleware or response handler
+
+### How to Use A Middleware
+
+We can use middleware like the below:
+
+```
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+```
+
+"app.use" is used to register a middleware.
+
+We can get data from json body or request body using "app.use(express.json())".
+We can get data from multi page's form using "app.use(express.urlencoded({extended: true}))".
+
+Let's install some third-party middleware
+
+```
+npm i morgan cors
+```
+
+morgan is a logger middleware.
+cors is a cross origin resource sharing middleware.
+
+```
+const cors = require("cors");
+const morgan = require("morgan");
+
+app.use(morgan("dev"));
+app.use(cors());
+```
+
+We use these middleware with the application, that's why they are global middleware. We also can use them as a route specific middleware like the below:
+
+```
+app.get("/about", cors(), (req, res) => {
+  res.send(`<h1>I am About Route</h1>`);
+});
+```
+
+In this case, cors() is worked only for this "/about" route. We can use here multiple middleware via an array like the below:
+
+```
+app.get("/about", [cors(), morgan('dev')], (req, res) => {
+  res.send(`<h1>I am About Route</h1>`);
+});
+```
+
+### Signature of A Middleware

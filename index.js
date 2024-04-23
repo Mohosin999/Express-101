@@ -1,7 +1,15 @@
 const express = require("express");
 const fs = require("fs");
+const cors = require("cors");
+const morgan = require("morgan");
 
 const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+app.use(cors());
 
 // Handle route
 app.get("/", (req, res) => {
