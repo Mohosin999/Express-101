@@ -389,3 +389,58 @@ app.get("/about", [cors(), morgan('dev')], (req, res) => {
 ```
 
 ### Signature of A Middleware
+
+Middleware and Controller's signature are same, but there is difference in responsibilities. Middleware checks everything and pass the request to next middleware or controller. After that controller do everything writing business logic and make actual response and submit it.
+
+```
+// If everything seems ok, controller will call response methods.
+// If everything seems ok, middleware will call next methods.
+
+function controllerSignature(req, res, next) {
+  // read request object
+  // process request
+  // response back the result
+}
+
+
+function middlewareSignature(req, res, next) {
+
+  next();
+}
+```
+
+### Create Custom Middleware
+
+#### Global Middleware
+
+```
+function globalMiddleware(req, res, next) {
+  console.log("I'm a global middleware");
+  next();
+}
+```
+
+Let's register it.
+
+```
+app.use(globalMiddleware);
+```
+
+We don't need to call this globalMiddleware function like above because we maintain the middleware signature at the time of creation. Remember, if we are not use next() methods, this middleare don't generate any response.
+
+#### Local Middleware
+
+```
+function localMiddleware(req, res, next) {
+  console.log("I'm a local middleware");
+  next();
+}
+```
+
+Let's use it into about route
+
+```
+app.get("/about", localMiddleware, (req, res) => {
+  res.send(`<h1>I am About Route</h1>`);
+});
+```
