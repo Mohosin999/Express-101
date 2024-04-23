@@ -321,8 +321,10 @@ Read [express request object](https://expressjs.com/en/5x/api.html#res) document
 
 ## Middleware Pipeline
 
-There is two types of middleware are exist:
+Another important concept like request and response is middleware. With its help we do the most important things. We can use middleware anywhere. If we are only working with request and response, we can do almost all the task.
 
-loading note...
+##### Then why do we use Middleware?
+
+When we say we need a separate handler for each task, it means that we will have some tasks that are very common and the tasks we need to do for each request. In this case if we can use middleware then we can complete these repetitive tasks in a specific place, but if we don't use middleware we have to write duplicate codes continuously.
 
 ![Middleware_Pipeline](./img/middleware.png)
