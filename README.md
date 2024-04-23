@@ -352,9 +352,7 @@ app.use(express.urlencoded({extended: true}))
 
 **`app.use`** is used to register a middleware.
 
-We can get data from json body or request body using **`app.use(express.json())`**.
-
-We can get data from multi page's form using **`app.use(express.urlencoded({extended: true}))`**.
+We can get data from json body or request body using **`app.use(express.json())`**. We can get data from multi page's form using **`app.use(express.urlencoded({extended: true}))`**.
 
 Let's install some third-party middleware.
 
