@@ -505,7 +505,7 @@ const router = require("express").Router();
 module.exports = router; // Do this to use routers from another places.
 ```
 
-Let's bring all routes of our application into this file.
+Let's bring all routes from **`index.js`** into **`routes.js`**.
 
 ```javascript
 // routes.js
