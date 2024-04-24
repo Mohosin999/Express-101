@@ -625,3 +625,7 @@ app.use(express.static("./public"));
 ```
 
 Now we can easily access everything from inside this public directory. Like if we want to access an image named **`nature.jpg`** then we can search - **`http://localhost:4000/nature.jpg`**.
+
+# Congratulation!
+
+## We have completed all the topics of Express.js
