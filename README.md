@@ -11,6 +11,7 @@
 - [Understand Router](#understand-router)
 - [Separate Router File](#separate-router-file)
 - [Separate Controllers](#separate-controllers)
+- [Understand Errors](#understand-errors)
 
 ## Create A Fresh Project
 
@@ -593,3 +594,5 @@ app.use((error, req, res, next) => {
   res.status(500).send("Something went wrong");
 });
 ```
+
+## What is a Static File
