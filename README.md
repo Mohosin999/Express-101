@@ -17,14 +17,14 @@
 
 Go to your terminal and run the following command.
 
-```
+```javascript
 npm init -y
 
 ```
 
 After that, create an "index.js" file in root directory. Go to the "package.json" file and update "script" section like the below:
 
-```
+```javascript
 "scripts": {
     "start": "node index.js"
   },
@@ -36,19 +36,19 @@ Now if go to terminal and run "npm start" then the project will run. Note that "
 
 To install express, run the following command.
 
-```
+```javascript
 npm i express
 ```
 
 We will write down the Node version we are using in the "package.json" file. How to check node version?
 
-```
-node -v
+```javascript
+node - v;
 ```
 
 In "package.json" file, write down the Node version like the below:
 
-```
+```javascript
 "engines": {
     "node": "20.11.0"
   }
@@ -58,20 +58,20 @@ Now go to "index.js" file and setup express application.
 
 1. Import express (old style and this is called common js module system).
 
-```
+```javascript
 const express = require("express");
 // import express from "express"; (new style and this is called ecmascript module system)
 ```
 
 2. Create the desire application using express function call.
 
-```
+```javascript
 const app = express();
 ```
 
 3. Now we need to listen this application.
 
-```
+```javascript
 app.listen(4000, () => {
   console.log("Server is listening on PORT 4000");
 });
@@ -80,7 +80,7 @@ app.listen(4000, () => {
 Our application is ready.
 Full code of 'index.js' file
 
-```
+```javascript
 const express = require("express");
 
 const app = express();
@@ -96,7 +96,7 @@ If you change any code, restart the server must (as we not yet use "nodemon")
 
 1. Handle route ( app.get(route, controller) )
 
-```
+```javascript
 // index.js
 
 app.get("/", (req, res) => {
@@ -148,7 +148,7 @@ app.get("/", (req, res) => {
 
 Every route needs a handler function. Handler function's signature is -
 
-```
+```javascript
 // It could be an arrow function.
 
 function handler(req, res, next) {
@@ -160,7 +160,7 @@ function handler(req, res, next) {
 
 ### Install Nodemon
 
-```
+```javascript
 npm i -D nodemon
 ```
 
@@ -170,7 +170,7 @@ This is not a dependency of the project, it is developer dependency. That's why 
 
 Add a new script inside package.json file ( "dev" is added ).
 
-```
+```javascript
 "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
@@ -181,27 +181,27 @@ Now we must write in terminal "npm run dev" not "npm dev". Now no need to restar
 
 ### Handle Multiple Routes
 
-```
+```javascript
 // index.js
 
-app.get('/', (req,res)=>{
-  res.send(`<h1>I am Home Route</h1>`)
-})
+app.get("/", (req, res) => {
+  res.send(`<h1>I am Home Route</h1>`);
+});
 
-app.get('/about', (req,res)=>{
-  res.send(`<h1>I am About Route</h1>`)
-})
+app.get("/about", (req, res) => {
+  res.send(`<h1>I am About Route</h1>`);
+});
 
-app.get('/help', (req,res)=>{
-  res.send(`<h1>I am Help Route</h1>`)
-})
+app.get("/help", (req, res) => {
+  res.send(`<h1>I am Help Route</h1>`);
+});
 ```
 
 ### Send HTML File
 
 Create a file named 'pages' in the root directory and create a folder named 'index.html' inside it.
 
-```
+```javascript
 // pages/index.html
 
 <!DOCTYPE html>
@@ -225,7 +225,7 @@ Create a file named 'pages' in the root directory and create a folder named 'ind
 
 To send this HTML file, go to 'index.js' file and import 'fs' module.
 
-```
+```javascript
 const fs = require("fs");
 
 app.get("/htmlfile", (req, res) => {
@@ -349,9 +349,9 @@ When we say we need a separate handler for each task, it means that we will have
 
 We can use middleware like the below:
 
-```
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+```javascript
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 ```
 
 **`app.use`** is used to register a middleware.
@@ -360,14 +360,14 @@ We can get data from json body or request body using **`app.use(express.json())`
 
 Let's install some third-party middleware.
 
-```
+```javascript
 npm i morgan cors
 ```
 
 **`morgan`** is a logger middleware.
 **`cors`** is a cross origin resource sharing middleware.
 
-```
+```javascript
 const cors = require("cors");
 const morgan = require("morgan");
 
@@ -377,7 +377,7 @@ app.use(cors());
 
 We are using these middleware within the application, so they are global middleware. We also can use them as route specific middleware like the below:
 
-```
+```javascript
 app.get("/about", cors(), (req, res) => {
   res.send(`<h1>I am About Route</h1>`);
 });
@@ -385,8 +385,8 @@ app.get("/about", cors(), (req, res) => {
 
 In this case, **`cors()`** will work only for this "/about" route. We can use here multiple middleware via an array like the below:
 
-```
-app.get("/about", [cors(), morgan('dev')], (req, res) => {
+```javascript
+app.get("/about", [cors(), morgan("dev")], (req, res) => {
   res.send(`<h1>I am About Route</h1>`);
 });
 ```
@@ -395,7 +395,7 @@ app.get("/about", [cors(), morgan('dev')], (req, res) => {
 
 Middleware and Controller have the same signature but their responsibilities differ. Middleware checks everything and passes the request to the next middleware or controller. Then the controller generates and submits the actual response by writing business logic.
 
-```
+```javascript
 // If everything seems ok, controller will call response methods.
 // If everything seems ok, middleware will call next methods.
 
@@ -405,9 +405,7 @@ function controllerSignature(req, res, next) {
   // response back the result
 }
 
-
 function middlewareSignature(req, res, next) {
-
   next();
 }
 ```
@@ -416,7 +414,7 @@ function middlewareSignature(req, res, next) {
 
 #### Global Middleware
 
-```
+```javascript
 function globalMiddleware(req, res, next) {
   console.log("I'm a global middleware");
   next();
@@ -425,7 +423,7 @@ function globalMiddleware(req, res, next) {
 
 Let's register it.
 
-```
+```javascript
 app.use(globalMiddleware);
 ```
 
@@ -433,7 +431,7 @@ We don't need to call the globalMiddleware function because we maintained the mi
 
 #### Local Middleware
 
-```
+```javascript
 function localMiddleware(req, res, next) {
   console.log("I'm a local middleware");
   next();
@@ -442,7 +440,7 @@ function localMiddleware(req, res, next) {
 
 Let's use it into about route
 
-```
+```javascript
 app.get("/about", localMiddleware, (req, res) => {
   res.send(`<h1>I am About Route</h1>`);
 });
@@ -462,7 +460,7 @@ Read [express router](https://expressjs.com/en/5x/api.html#router) documentation
 
 Firstly we need to export the Router, so we can call the Router function directly from express like the below:
 
-```
+```javascript
 const express = require("express");
 
 const router = express.Router();
@@ -470,7 +468,7 @@ const router = express.Router();
 
 Now we can use **`router.get`** instead of **`app.get`**.
 
-```
+```javascript
 router.get("/", (req, res) => {
   res.send(`<h1>I am Home Route</h1>`);
 });
@@ -478,7 +476,7 @@ router.get("/", (req, res) => {
 
 Now we will tell our application that we have used router middleware -
 
-```
+```javascript
 app.use(router);
 ```
 
@@ -490,19 +488,19 @@ Using this theory we can handle route in separate file.
 
 Let's create a separate router file in root directory named **`routes.js`**.
 
-```
+```javascript
 const router = require("express").Router();
 ```
 
 This file needs to be exported so that the routers can be used from other places like the below:
 
-```
+```javascript
 module.exports = router;
 ```
 
 Let's bring all routes of our application into this file.
 
-```
+```javascript
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
@@ -522,7 +520,7 @@ module.exports = router;
 
 Now import this file into main file like the below:
 
-```
+```javascript
 app.use(require("./routes"));
 ```
 
@@ -532,7 +530,7 @@ Let's create a separate controller file in root directory named **`controller.js
 
 Now let's move the controller functions from **`routes.js`** file to this file -
 
-```
+```javascript
 exports.homeController = (req, res) => {
   res.send(`<h1>I am Home Route</h1>`);
 };
@@ -548,7 +546,7 @@ exports.helpController = (req, res) => {
 
 And use these controllers by importing them into the **`routes.js`** file like the below:
 
-```
+```javascript
 const router = require("express").Router();
 // Import controller from "controller.js" file.
 const {
@@ -599,4 +597,14 @@ app.use((error, req, res, next) => {
 });
 ```
 
-## What is a Static File
+## Static File
+
+### Setup a Public Directory
+
+Let's create a file in root directory named **`public`** and put here some images. Now go to **`index.js`** file and do this -
+
+```javascript
+app.use(express.static("./public"));
+```
+
+Now we can get access everything easily from inside this public directory. Like if we want to access an image named **`nature.jpg`** then we can search - **`http://localhost:4000/nature.jpg`**.
