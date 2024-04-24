@@ -300,7 +300,7 @@ Read [express request object](https://expressjs.com/en/5x/api.html#req) document
 
 ### Important Response Object
 
-Methods
+**Methods**
 
 - res.append()
 - res.attachment()
@@ -328,7 +328,7 @@ Read [express request object](https://expressjs.com/en/5x/api.html#res) document
 
 Another important concept like request and response is middleware. With its help we do the most important things. We can use middleware anywhere. If we are only working with request and response, we can do almost all the task.
 
-#### Then why do we use Middleware?
+**Then why do we use Middleware?**
 
 When we say we need a separate handler for each task, it means that we will have some tasks that are very common and the tasks we need to do for each request. In this case if we can use middleware then we can complete these repetitive tasks in a specific place, but if we don't use middleware we have to write duplicate codes continuously. That's why we use middleware.
 
@@ -428,7 +428,7 @@ Let's register it.
 app.use(globalMiddleware);
 ```
 
-We don't need to call the globalMiddleware function because we maintained the middleware signature when we created the globalMiddleware. Note that, if we don't call the next() methods, this middleware will not generate any response.
+We don't need to call the **`globalMiddleware`** function because we maintained the middleware signature when we created the globalMiddleware. Note that, if we don't call the **`next()`** methods, this middleware will not generate any response.
 
 #### Local Middleware
 
@@ -452,8 +452,8 @@ app.get("/about", localMiddleware, (req, res) => {
 ### Important Router Methods
 
 - router.all()
-- router.route() (for grouping)
-- router.use() (for large application)
+- router.route()
+- router.use()
 
 Read [express router](https://expressjs.com/en/5x/api.html#router) documentation to gain details knowledge.
 
@@ -475,7 +475,7 @@ router.get("/", (req, res) => {
 });
 ```
 
-Now we will tell our application that we have used router middleware -
+Now we will tell our application that we have used router middleware.
 
 ```javascript
 app.use(router);
@@ -487,21 +487,29 @@ Using this theory we can handle route in separate file.
 
 ## Separate Router File
 
-Let's create a separate router file in root directory named **`routes.js`**.
+Let's create a separate router file in root directory named **`routes.js`** and do this -
 
 ```javascript
+// routes.js
+
 const router = require("express").Router();
 ```
 
-This file needs to be exported so that the routers can be used from other places like the below:
+This **`routes.js`** file needs to be exported so that routers can be used from other places.
 
 ```javascript
-module.exports = router;
+// routes.js
+
+const router = require("express").Router();
+
+module.exports = router; // Do this to use routers from another places.
 ```
 
 Let's bring all routes of our application into this file.
 
 ```javascript
+// routes.js
+
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
@@ -519,9 +527,11 @@ router.get("/help", (req, res) => {
 module.exports = router;
 ```
 
-Now import this file into main file like the below:
+Now import this file into **`index.js`** file like the below:
 
 ```javascript
+// index.js
+
 app.use(require("./routes"));
 ```
 
@@ -529,9 +539,11 @@ app.use(require("./routes"));
 
 Let's create a separate controller file in root directory named **`controller.js`**.
 
-Now let's move the controller functions from **`routes.js`** file to this file -
+Now let's move all the controller functions from **`routes.js`** file to **`controller.js`**.
 
 ```javascript
+// controller.js
+
 exports.homeController = (req, res) => {
   res.send(`<h1>I am Home Route</h1>`);
 };
@@ -548,6 +560,8 @@ exports.helpController = (req, res) => {
 And use these controllers by importing them into the **`routes.js`** file like the below:
 
 ```javascript
+// routes.js
+
 const router = require("express").Router();
 // Import controller from "controller.js" file.
 const {
@@ -602,9 +616,11 @@ app.use((error, req, res, next) => {
 
 ### Setup a Public Directory
 
-Create a file called **`public`** in the root directory and put some images in it. Now go to **`index.js`** file and do this -
+Create a folder called **`public`** in the root directory and put some images in it. Now go to **`index.js`** file and do this -
 
 ```javascript
+// index.js
+
 app.use(express.static("./public"));
 ```
 
