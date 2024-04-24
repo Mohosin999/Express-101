@@ -570,7 +570,9 @@ module.exports = router;
 
 ### 404 Error Middleware
 
-```
+```javascript
+// index.js
+
 // 404 error middleware
 app.use((req, res, next) => {
   // let's create error object
@@ -582,7 +584,9 @@ app.use((req, res, next) => {
 
 ### Global Error Middleware
 
-```
+```javascript
+// index.js
+
 // Global error middleware
 app.use((error, req, res, next) => {
   // If there is error.status, that means it's our generated error.
