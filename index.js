@@ -13,6 +13,14 @@ app.use(cors());
 app.use(globalMiddleware);
 app.use(require("./routes"));
 
+// 404 route handle
+app.use((req, res, next) => {
+  // let's create error object
+  const error = new Error("404 Not Found");
+  error.status = 404;
+  next(error);
+});
+
 // Handle route
 
 app.listen(4000, () => {
