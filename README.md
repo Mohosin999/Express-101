@@ -9,6 +9,8 @@
 - [Understand Response](#understand-response)
 - [Middleware Pipeline](#middleware-pipeline)
 - [Understand Router](#understand-router)
+- [Separate Router File](#separate-router-file)
+- [Separate Controllers](#separate-controllers)
 
 ## Create A Fresh Project
 
@@ -526,3 +528,41 @@ app.use(require("./routes"));
 ## Separate Controllers
 
 Let's create a separate controller file in root directory named **`controller.js`**.
+
+Now let's move the controller functions from **`routes.js`** file to this file -
+
+```
+exports.homeController = (req, res) => {
+  res.send(`<h1>I am Home Route</h1>`);
+};
+
+exports.aboutController = (req, res) => {
+  res.send(`<h1>I am About Route</h1>`);
+};
+
+exports.helpController = (req, res) => {
+  res.send(`<h1>I am Help Route</h1>`);
+};
+```
+
+And use these controllers by importing them into the **`routes.js`** file like the below:
+
+```
+const router = require("express").Router();
+// Import controller from "controller.js" file.
+const {
+  homeController,
+  aboutController,
+  helpController,
+} = require("./controller");
+
+router.get("/", homeController);
+
+router.get("/about", aboutController);
+
+router.get("/help", helpController);
+
+module.exports = router;
+```
+
+## Understand Errors

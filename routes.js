@@ -1,15 +1,15 @@
 const router = require("express").Router();
+// Import controller from "controller.js" file.
+const {
+  homeController,
+  aboutController,
+  helpController,
+} = require("./controller");
 
-router.get("/", (req, res) => {
-  res.send(`<h1>I am Home Route</h1>`);
-});
+router.get("/", homeController);
 
-router.get("/about", (req, res) => {
-  res.send(`<h1>I am About Route</h1>`);
-});
+router.get("/about", aboutController);
 
-router.get("/help", (req, res) => {
-  res.send(`<h1>I am Help Route</h1>`);
-});
+router.get("/help", helpController);
 
 module.exports = router;
