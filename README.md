@@ -443,3 +443,81 @@ app.get("/about", localMiddleware, (req, res) => {
   res.send(`<h1>I am About Route</h1>`);
 });
 ```
+
+## Understand Router
+
+### Important Router Methods
+
+- router.all()
+- router.route() (for grouping)
+- router.use() (for large application)
+
+Read [express router]() documentation to gain details knowledge.
+
+![Express_Router]()
+
+Firstly Router ke amader baire ber kore ante hobe, tar jonne amra express theke directly Router function ke call korte pari like the below:
+
+```
+const express = require("express");
+
+const router = express.Router();
+```
+
+akhon amra **`app.get`** er bodole **`router.get`** use korte pari.
+
+```
+router.get("/", (req, res) => {
+  res.send(`<h1>I am Home Route</h1>`);
+});
+```
+
+akon amra amader application take run korle error dekhbo, karon holo amra application er sathe eta use korini, amra router er sathe routing ta use koreci, jar fole amader application ee kuno route pacce na, so router basically akta middleware, amra jehetu router express theke ber kore alada vabe ata configure koreci, amader uchit hobe amader application janiye dewa je vai ami ai middleware ta use korecilam.
+
+```
+app.use(router);
+```
+
+akhon application take run korle sob thik thak vabe cholbe. ai theory ta use kore amra alada file ee routing handle korte pari.
+
+**Enough knowledge amra gain koreci, it's time to practical task**
+
+## Separate Router File
+
+Let's create a separate router file in root directory named **`routes.js`**. ai file ei akhon theke router related sokol kaj kora hobe like router modify kora, new new router add kora. akhon ai file ee router take ber kore ani
+
+```
+const router = require("express").Router();
+```
+
+router gulo ke jeno onno file theke use korte pari tar jonne router take export korbo like the below:
+
+```
+module.exports = router;
+```
+
+amader project er sob router ke ai file ee niye asi
+
+```
+const router = require("express").Router();
+
+router.get("/", (req, res) => {
+  res.send(`<h1>I am Home Route</h1>`);
+});
+
+router.get("/about", localMiddleware, (req, res) => {
+  res.send(`<h1>I am About Route</h1>`);
+});
+
+router.get("/help", (req, res) => {
+  res.send(`<h1>I am Help Route</h1>`);
+});
+
+module.exports = router;
+```
+
+and ai file take main file ee import kori like the below:
+
+```
+app.use(require("./routes"));
+```
