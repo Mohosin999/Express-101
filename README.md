@@ -8,6 +8,7 @@
 - [Understand Request](#understand-request)
 - [Understand Response](#understand-response)
 - [Middleware Pipeline](#middleware-pipeline)
+- [Understand Router](#understand-router)
 
 ## Create A Fresh Project
 
@@ -452,11 +453,11 @@ app.get("/about", localMiddleware, (req, res) => {
 - router.route() (for grouping)
 - router.use() (for large application)
 
-Read [express router]() documentation to gain details knowledge.
+Read [express router](https://expressjs.com/en/5x/api.html#router) documentation to gain details knowledge.
 
-![Express_Router]()
+![Express_Router](./img/express_routes.png)
 
-Firstly Router ke amader baire ber kore ante hobe, tar jonne amra express theke directly Router function ke call korte pari like the below:
+Firstly we need to export the Router, so we can call the Router function directly from express like the below:
 
 ```
 const express = require("express");
@@ -464,7 +465,7 @@ const express = require("express");
 const router = express.Router();
 ```
 
-akhon amra **`app.get`** er bodole **`router.get`** use korte pari.
+Now we can use **`router.get`** instead of **`app.get`**.
 
 ```
 router.get("/", (req, res) => {
@@ -472,31 +473,31 @@ router.get("/", (req, res) => {
 });
 ```
 
-akon amra amader application take run korle error dekhbo, karon holo amra application er sathe eta use korini, amra router er sathe routing ta use koreci, jar fole amader application ee kuno route pacce na, so router basically akta middleware, amra jehetu router express theke ber kore alada vabe ata configure koreci, amader uchit hobe amader application janiye dewa je vai ami ai middleware ta use korecilam.
+Now we will tell our application that we have used router middleware -
 
 ```
 app.use(router);
 ```
 
-akhon application take run korle sob thik thak vabe cholbe. ai theory ta use kore amra alada file ee routing handle korte pari.
+Using this theory we can handle route in separate file.
 
-**Enough knowledge amra gain koreci, it's time to practical task**
+**Enough! We have gained a lot of knowledge, now we can do something practically**
 
 ## Separate Router File
 
-Let's create a separate router file in root directory named **`routes.js`**. ai file ei akhon theke router related sokol kaj kora hobe like router modify kora, new new router add kora. akhon ai file ee router take ber kore ani
+Let's create a separate router file in root directory named **`routes.js`**.
 
 ```
 const router = require("express").Router();
 ```
 
-router gulo ke jeno onno file theke use korte pari tar jonne router take export korbo like the below:
+This file needs to be exported so that the routers can be used from other places like the below:
 
 ```
 module.exports = router;
 ```
 
-amader project er sob router ke ai file ee niye asi
+Let's bring all routes of our application into this file.
 
 ```
 const router = require("express").Router();
@@ -505,7 +506,7 @@ router.get("/", (req, res) => {
   res.send(`<h1>I am Home Route</h1>`);
 });
 
-router.get("/about", localMiddleware, (req, res) => {
+router.get("/about", (req, res) => {
   res.send(`<h1>I am About Route</h1>`);
 });
 
@@ -516,8 +517,12 @@ router.get("/help", (req, res) => {
 module.exports = router;
 ```
 
-and ai file take main file ee import kori like the below:
+Now import this file into main file like the below:
 
 ```
 app.use(require("./routes"));
 ```
+
+## Separate Controllers
+
+Let's create a separate controller file in root directory named **`controller.js`**.

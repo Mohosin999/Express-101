@@ -4,7 +4,7 @@ router.get("/", (req, res) => {
   res.send(`<h1>I am Home Route</h1>`);
 });
 
-router.get("/about", localMiddleware, (req, res) => {
+router.get("/about", (req, res) => {
   res.send(`<h1>I am About Route</h1>`);
 });
 
