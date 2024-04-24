@@ -601,10 +601,10 @@ app.use((error, req, res, next) => {
 
 ### Setup a Public Directory
 
-Let's create a file in root directory named **`public`** and put here some images. Now go to **`index.js`** file and do this -
+Create a file called **`public`** in the root directory and put some images in it. Now go to **`index.js`** file and do this -
 
 ```javascript
 app.use(express.static("./public"));
 ```
 
-Now we can get access everything easily from inside this public directory. Like if we want to access an image named **`nature.jpg`** then we can search - **`http://localhost:4000/nature.jpg`**.
+Now we can easily access everything from inside this public directory. Like if we want to access an image named **`nature.jpg`** then we can search - **`http://localhost:4000/nature.jpg`**.
